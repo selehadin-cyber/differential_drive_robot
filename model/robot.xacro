@@ -154,6 +154,7 @@
         <dynamics damping="0.1" friction="0.1"/>
     </joint>
 
+    <!-- Laser -->
     <!-- Caster Wheel Joint (fixed) -->
     <joint name="caster_joint" type="fixed">
         <origin xyz="${caster_offset} 0 -${caster_radius/2}" rpy="0 0 0"/>
