@@ -28,8 +28,8 @@
   gz_type_name: "gz.msgs.Twist"
   direction: "ROS_TO_GZ"
 
-- ros_topic_name: "/scan"  # The ROS 2 topic name
-  gz_topic_name: "/scan" # The Gazebo topic name
+- ros_topic_name: "scan"  # The ROS 2 topic name
+  gz_topic_name: "scan" # The Gazebo topic name
   ros_type_name: "sensor_msgs/msg/LaserScan" # The ROS 2 message type
   gz_type_name: "gz.msgs.LaserScan" # The Gazebo message type
   direction: "GZ_TO_ROS" # Data flows from Gazebo to ROS 2
