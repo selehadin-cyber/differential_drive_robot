@@ -45,8 +45,18 @@
 
     <!-- Links -->
 
-    <!-- Body Link -->
-    <link name="body_link">
+    <!-- BASE_FOOTPRINT LINK -->
+
+    <joint name="base_footprint_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="base_footprint"/>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+    </joint>
+
+    <link name="base_footprint">
+    </link>
+    <!-- Base Link -->
+    <link name="base_link">
         <visual>
             <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
             <geometry>
@@ -146,7 +156,7 @@
     <!-- Left Wheel Joint -->
     <joint name="left_wheel_joint" type="continuous">
         <origin xyz="-${wheel_offset} ${wheel_separation/2} -${wheel_radius/2}" rpy="0 0 0"/>
-        <parent link="body_link"/>
+        <parent link="base_link"/>
         <child link="left_wheel_link"/>
         <axis xyz="0 1 0"/>
         <limit effort="100" velocity="10.0"/>
@@ -156,7 +166,7 @@
     <!-- Right Wheel Joint -->
     <joint name="right_wheel_joint" type="continuous">
         <origin xyz="-${wheel_offset} ${-wheel_separation/2} -${wheel_radius/2}" rpy="0 0 0"/>
-        <parent link="body_link"/>
+        <parent link="base_link"/>
         <child link="right_wheel_link"/>
         <axis xyz="0 1 0"/>
         <limit effort="100" velocity="10.0"/>
@@ -165,7 +175,7 @@
 
     <!-- Laser -->
      <joint name="laser_joint" type="fixed">
-        <parent link="body_link"/>
+        <parent link="base_link"/>
         <child link="laser_frame"/>
         <origin xyz="0.122 0 0.15" rpy="0 0 0"/>
     </joint>
@@ -235,12 +245,12 @@
     <!-- Caster Wheel Joint (fixed) -->
     <joint name="caster_joint" type="fixed">
         <origin xyz="${caster_offset} 0 -${caster_radius/2}" rpy="0 0 0"/>
-        <parent link="body_link"/>
+        <parent link="base_link"/>
         <child link="caster_link"/>
     </joint>
 
     <!-- Gazebo Parameters -->
-    <gazebo reference="body_link">
+    <gazebo reference="base_link">
         <mu1>1.0</mu1>
         <mu2>1.0</mu2>
     </gazebo>
@@ -271,7 +281,7 @@
             <odom_publish_frequency>30</odom_publish_frequency>
             <topic>cmd_vel</topic>
             <frame_id>odom</frame_id>
-            <child_frame_id>body_link</child_frame_id>
+            <child_frame_id>base_link</child_frame_id>
             <odom_topic>odom</odom_topic>
             <tf_topic>/tf</tf_topic>
         </plugin>
