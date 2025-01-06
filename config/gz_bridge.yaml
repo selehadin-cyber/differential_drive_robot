@@ -22,11 +22,14 @@
   gz_type_name: "gz.msgs.Pose_V"
   direction: "GZ_TO_ROS"
 
-- ros_topic_name: "cmd_vel"
+
+
+# gz topic subscribed to by DiffDrive plugin
+- ros_topic_name: "diff_cont/cmd_vel"
   gz_topic_name: "cmd_vel"
   ros_type_name: "geometry_msgs/msg/Twist"
   gz_type_name: "gz.msgs.Twist"
-  direction: "ROS_TO_GZ"
+  direction: ROS_TO_GZ
 
 - ros_topic_name: "scan"  # The ROS 2 topic name
   gz_topic_name: "scan" # The Gazebo topic name
