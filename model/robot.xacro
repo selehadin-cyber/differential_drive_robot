@@ -303,7 +303,8 @@
             <joint_name>right_wheel_joint</joint_name>
             <joint_name>left_wheel_joint</joint_name>
         </plugin>
-        <plugin name="gz_ros2_control::GazeboSimROS2ControlPlugin" filename="libgz_ros2_control-system.so">
+        
+        <plugin name="gz_ros2_control::GazeboSimROS2ControlPlugin" filename="libgz_ros2_control-system">
             <parameters>$(find differential_drive_robot)/config/my_controllers.yaml</parameters>
             <parameters>$(find differential_drive_robot)/config/gaz_ros2_ctl_use_sim.yaml</parameters>
         </plugin>

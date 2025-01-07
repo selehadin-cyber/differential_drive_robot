@@ -106,18 +106,9 @@ def generate_launch_description():
         package='robot_state_publisher',
         executable='robot_state_publisher',
         parameters=[
-            {'robot_description': robot_description, 'use_sim_time': False}
+            {'robot_description': robot_description, 'use_sim_time': True}
         ],
         output='screen'
-    )
-
-    controller_params_file = os.path.join(get_package_share_directory(robot_pkg_name),'config','my_controllers.yaml')
-    
-    controller_manager = Node(
-        package="controller_manager",
-        executable="ros2_control_node",
-        parameters=[{'robot_description': robot_description},
-                    controller_params_file]
     )
     # diff drive spawner
     diff_drive_spawner = Node(
@@ -156,6 +147,5 @@ def generate_launch_description():
         robot_state_publisher_node,
         gz_bridge_node,
         diff_drive_spawner,
-        joint_broad_spawner,
-        controller_manager
+        joint_broad_spawner
     ])
