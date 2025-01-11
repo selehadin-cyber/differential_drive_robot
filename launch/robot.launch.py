@@ -24,18 +24,24 @@ def generate_launch_description():
         'robot.xacro'
     )
 
+ 
+
+    rsp = IncludeLaunchDescription(
+                PythonLaunchDescriptionSource([os.path.join(
+                    get_package_share_directory(robot_pkg_name),'launch','rsp.launch.py'
+                )]), launch_arguments={'use_sim_time': 'false', 'use_ros2_control': 'true'}.items()
+    )
 
 
 
-
-    robot_descriptionl = Command(['ros2 param get --hide-type /robot_state_publisher robot_description'])
+    robot_description = Command(['ros2 param get --hide-type /robot_state_publisher robot_description'])
 
     controller_params_file = os.path.join(get_package_share_directory(robot_pkg_name),'config','my_controllers.yaml')
     
     controller_manager = Node(
         package="controller_manager",
         executable="ros2_control_node",
-        parameters=[{'robot_description': robot_descriptionl},
+        parameters=[{'robot_description': robot_description},
                     controller_params_file]
     )
 
@@ -71,6 +77,7 @@ def generate_launch_description():
     
 
     return LaunchDescription([
+        rsp,
         delayed_controller_manager,
         delayed_diff_drive_spawner,
         delayed_joint_broad_spawner
